@@ -28,8 +28,16 @@ public class ContactUsPage extends AbstractPage{
         return this;
     }
 
+    public ContactUsPage fillFormWait(String name, String email, String textArea){
+        getElement(userNameField, 7).sendKeys(name);
+        driver.findElement(emailField).sendKeys(email);
+        driver.findElement(messageTextArea).sendKeys(textArea);
+        return this;
+    }
+
     public ContactUsPage checkPrivacyPolicy(){
-        driver.findElement(privacyPolicyCheckbox).click();
+        //driver.findElement(privacyPolicyCheckbox).click();
+        clickJS(privacyPolicyCheckbox);
         return this;
     }
 

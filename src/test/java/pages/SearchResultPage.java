@@ -8,13 +8,21 @@ import java.util.List;
 
 public class SearchResultPage extends AbstractPage{
 
-    private final By linksText = By.cssSelector("h3>a");
-    //private final By linksText = By.cssSelector("[class='search-item']>p:not([class='search-date'])");
+    private final By searchResultLinks = By.cssSelector("h3>a");
+    private final By searchResultDescriptions = By.cssSelector("[class='search-item']>p:not([class='search-date'])");
+
     public SearchResultPage(WebDriver driver) {
+
         super(driver);
     }
 
-    public List<WebElement>getLinksText(){
-        return getElements(linksText);
+    public List<WebElement> getSearchResultLinks(){
+        return  getElements(searchResultLinks);
     }
+
+    public List<WebElement> getSearchResultDescriptions(){
+        return  getElements(searchResultDescriptions);
+    }
+
+
 }

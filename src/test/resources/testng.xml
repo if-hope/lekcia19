@@ -4,6 +4,7 @@
     <test name="ContactUs tests">
         <classes>
             <class name="hiretestertests.ContactUsTest"/>
+            <class name="hiretestertests.SearchResultTest"/>
         </classes>
 
     </test>
