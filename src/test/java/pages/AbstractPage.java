@@ -12,11 +12,13 @@ public class AbstractPage {
 
     protected WebDriver driver;
 
-    private final static int TIME_TO_WAIT_DEFAULT = 5;
+    private final static int TIME_TO_WAIT_DEFAULT = 4;
 
     private final By searchIcon = By.cssSelector("div>[class='quick-search__icon']");
     private final By searchField = By.cssSelector("[class='quick-search__field']");
     private final By searchSubmit = By.cssSelector("button>[class='quick-search__icon']");
+
+    private final By title = By.cssSelector("h1[class='header__title aos-init aos-animate']");
 
 
     public AbstractPage(WebDriver driver) {
@@ -58,15 +60,24 @@ public class AbstractPage {
     }
 
    public SearchResultPage search(String searchText){
-        driver.findElement(searchIcon).click();
-        driver.findElement(searchField).sendKeys(searchText);
-        driver.findElement(searchSubmit).click();
+        getElement(searchIcon).click();
+        getElement(searchField).sendKeys(searchText);
+        getElement(searchSubmit).click();
         return new SearchResultPage(driver);
    }
 
    public void clickJS(By by){
         JavascriptExecutor executor = (JavascriptExecutor) driver;
         executor.executeScript("arguments[0].click();", getElement(by));
+   }
+
+   public void onHover(){
+        Actions action = new Actions(driver);
+        String colorWithoutMouse = getElement(title).getCssValue("color");
+       System.out.println(colorWithoutMouse);
+        action.moveToElement(getElement(title)).perform();
+        String colorAfterOnhover = getElement(title).getCssValue("color");
+       System.out.println(colorAfterOnhover);
    }
 
 

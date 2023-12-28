@@ -6,6 +6,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+import pages.AbstractPage;
 
 import java.time.Duration;
 
@@ -29,6 +31,12 @@ public class AbstractTest {
     public void tearDown(){
         driver.close();
         driver.quit();
+    }
+
+    @Test
+    public void getTitleColor(){
+        new AbstractPage(driver).openMainPage().onHover();
+
     }
 
 

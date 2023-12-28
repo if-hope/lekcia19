@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SearchResultPage extends AbstractPage{
@@ -17,11 +18,28 @@ public class SearchResultPage extends AbstractPage{
     }
 
     public List<WebElement> getSearchResultLinks(){
-        return  getElements(searchResultLinks);
+        return
+                getElements(searchResultLinks);
     }
 
     public List<WebElement> getSearchResultDescriptions(){
-        return  getElements(searchResultDescriptions);
+        return
+                getElements(searchResultDescriptions);
+    }
+
+    public boolean searchContains(List<WebElement> searchResultLinks, List<WebElement> searchResultDescriptions){
+        List<String> searchResultText =searchResultLinks.stream().map(searchResultLink -> searchResultLink.getText()).toList();
+        List<String> searchResultDescText = searchResultDescriptions.stream().map(searchResultDescription -> searchResultDescription.getText()).toList();
+
+        List<String> concatinated = new ArrayList<>();
+        for (int i = 0; i < searchResultText.size();){
+            for (int j = 0; j < searchResultDescText.size();){
+                concatinated.add(searchResultText.get(i) + searchResultDescText.get(j));
+                i++;
+                j++;
+            }
+        }
+        return concatinated.stream().allMatch(element -> element.contains("test"));
     }
 
 

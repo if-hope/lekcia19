@@ -22,31 +22,26 @@ public class ContactUsPage extends AbstractPage{
     }
 
     public ContactUsPage fillForm(String name, String email, String textArea){
-        driver.findElement(userNameField).sendKeys(name);
-        driver.findElement(emailField).sendKeys(email);
-        driver.findElement(messageTextArea).sendKeys(textArea);
-        return this;
-    }
-
-    public ContactUsPage fillFormWait(String name, String email, String textArea){
-        getElement(userNameField, 7).sendKeys(name);
-        driver.findElement(emailField).sendKeys(email);
-        driver.findElement(messageTextArea).sendKeys(textArea);
+        getElement(userNameField).sendKeys(name);
+        getElement(emailField).sendKeys(email);
+        getElement(messageTextArea).sendKeys(textArea);
         return this;
     }
 
     public ContactUsPage checkPrivacyPolicy(){
-        //driver.findElement(privacyPolicyCheckbox).click();
-        clickJS(privacyPolicyCheckbox);
+        getElement(privacyPolicyCheckbox).click();
+        //clickJS(privacyPolicyCheckbox);
         return this;
     }
 
     public String getEmailError(){
-        return driver.findElement(emailErrorMessage).getText();
+
+        return getElement(emailErrorMessage).getText();
     }
 
     public boolean isCaptchaBlock(){
-        return driver.findElement(captchaDiv).isDisplayed();
+
+        return getElement(captchaDiv).isDisplayed();
     }
 
 
